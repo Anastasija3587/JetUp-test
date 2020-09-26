@@ -23,7 +23,7 @@ export const getNewsSuccess = (news: []) => ({
   },
 });
 
-export const getNewsError = (error: any) => ({
+export const getNewsError = (error: Error) => ({
   type: types.GET_NEWS_ERROR,
   payload: {
     error,
@@ -41,16 +41,30 @@ export const getWeatherSuccess = (weather: {}) => ({
   },
 });
 
-export const getWeatherError = (error: any) => ({
+export const getWeatherError = (error: Error) => ({
   type: types.GET_WEATHER_ERROR,
   payload: {
     error,
   },
 });
 
-export const deleteWeather = (newWeather: []) => ({
+export const deleteWeather = (id: number) => ({
   type: types.DELETE_WEATHER,
   payload: {
-    newWeather,
-  }
-})
+    id,
+  },
+});
+
+export const deleteProfile = (url: string) => ({
+  type: types.DELETE_PROFILE,
+  payload: {
+    url,
+  },
+});
+
+export const addNews = (news: {}) => ({
+  type: types.ADD_NEWS,
+  payload: {
+    news,
+  },
+});

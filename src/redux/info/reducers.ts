@@ -1,10 +1,6 @@
 import { combineReducers } from 'redux';
 import types from './types';
-
-interface Action {
-  type: string;
-  payload?: any;
-}
+import { Action } from '../../types/types';
 
 const news = (state = [], action: Action) => {
   switch (action.type) {
@@ -20,7 +16,7 @@ const weather = (state = [], action: Action) => {
     case types.GET_WEATHER_SUCCESS:
       return [...state, action.payload.weather];
     case types.DELETE_WEATHER:
-      return action.payload.newWeather;
+      return state.filter((w: { id: number }) => w.id !== action.payload.id);
     default:
       return state;
   }
@@ -32,6 +28,17 @@ const isAuth = (state = false, action: Action) => {
       return true;
     case types.LOGOUT:
       return false;
+    default:
+      return state;
+  }
+};
+
+const profile = (state = [], action: Action) => {
+  switch (action.type) {
+    case types.ADD_NEWS:
+      return [...state, action.payload.news];
+    case types.DELETE_PROFILE:
+      return state.filter((n: { url: string }) => n.url !== action.payload.url);
     default:
       return state;
   }
@@ -56,5 +63,6 @@ export default combineReducers({
   isAuth,
   news,
   weather,
+  profile,
   isLoading,
 });

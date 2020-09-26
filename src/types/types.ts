@@ -3,6 +3,7 @@ export interface State {
     isAuth: boolean;
     news: [];
     weather: [];
+    profile: [];
     isLoading: boolean;
   };
 }
@@ -12,4 +13,16 @@ export type singleWeather = {
   name: string;
   weather: [{ description: string }];
   main: { temp: number };
+};
+
+export type singleNews = {
+  url: string;
+  urlToImage: string;
+  author: string;
+  content: string;
+};
+
+export interface Action {
+  type: string;
+  payload?: any;
 }

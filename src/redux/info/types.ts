@@ -10,4 +10,6 @@ export default {
   LOGIN: 'info/LOGIN',
   LOGOUT: 'info/LOGOUT',
   DELETE_WEATHER: 'info/DELETE_WEATHER',
+  ADD_NEWS: 'info/ADD_NEWS',
+  DELETE_PROFILE: 'info/DELETE_PROFILE'
 };

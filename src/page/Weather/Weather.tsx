@@ -1,14 +1,15 @@
 // eslint-disable-next-line
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import CardActions from '@material-ui/core/CardActions';
+import Grid from '@material-ui/core/Grid';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { State, singleWeather } from '../../types/types';
 import { fetchWeather } from '../../redux/info/operations';
 import { deleteWeather } from '../../redux/info/actions';
@@ -51,16 +52,9 @@ const Weather = () => {
     setCity('');
   };
 
-  const handleClick = (id: number) => {
-    if (weather) {
-      const newWeather: any = weather.filter((w: singleWeather) => w.id !== id);
-      dispatch(deleteWeather(newWeather));
-    }
-  };
-
   return (
     <>
-      <Link to="/">Back</Link>
+      <Link to="/">&#8617; Back</Link>
       <form
         className={classes.root}
         noValidate
@@ -92,9 +86,9 @@ const Weather = () => {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="small" onClick={() => handleClick(w.id)}>
-              &#10006;
-            </Button>
+            <Grid item xs={8} onClick={() => dispatch(deleteWeather(w.id))}>
+              <DeleteIcon />
+            </Grid>
           </CardActions>
         </Card>
       ))}
